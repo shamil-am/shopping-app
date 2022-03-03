@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import {
   Col,
   Card,
@@ -6,32 +6,40 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardText,
   Button,
 } from "reactstrap";
 
-const ProductComponent = () => {
+import "../styles/card.scss";
+
+const ProductComponent = ({ product }) => {
+  const {
+    id,
+    title,
+    price,
+    image,
+    rating: { count, rate },
+  } = product;
+  const titleTrimmer = (title) => {
+    let newTitle = title.split("");
+    newTitle.length = 16;
+    return newTitle.join("");
+  };
   return (
     <Col sm={6} md={4} lg={3}>
-      <Card>
-        <CardImg
-          alt="Card image cap"
-          src="https://picsum.photos/318/180"
-          top
-          width="100%"
-        />
-        <CardBody>
-          <CardTitle tag="h5">Card title</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">
-            Card subtitle
-          </CardSubtitle>
-          <CardText>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
+      <Link to={`/products/${id}`} style={{ textDecoration: "none", color: 'black'}}>
+        <Card>
+          <CardImg alt="Card image cap" src={image} top />
+          <CardBody>
+            <CardTitle tag="h5">{titleTrimmer(title)}</CardTitle>
+            <CardSubtitle className="mb-2 text-muted" tag="h6">
+              Raring: {rate} Count: {count}
+            </CardSubtitle>
+            <CardSubtitle className="mb-2 text-info" tag="h6">
+              Price: {price}$
+            </CardSubtitle>
+          </CardBody>
+        </Card>
+      </Link>
     </Col>
   );
 };
