@@ -16,6 +16,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { addToCart } from "../redux/actions/cartActions";
 
 const ProductDetail = () => {
   const selected = useSelector((state) => state.selectedProductReducer);
@@ -58,7 +59,7 @@ const ProductDetail = () => {
           <img alt="Card image cap" src={`${selected.image}`} width="100%" />
           <CardBody>
             <CardText>{selected.description}</CardText>
-            <Button color="primary">Add to Cart</Button>
+            <Button color="primary" onClick={()=> dispatch(addToCart(selected))}>Add to Cart</Button>
           </CardBody>
         </Card>
       </Col>
