@@ -9,11 +9,13 @@ const Header = () => {
     <Row>
       <Col sm={6}>
         <Link to="/" className="text-dark">
-          <h2>Trendyol</h2>
+          <h2>MyShop</h2>
         </Link>
       </Col>
       <Col sm={6}>
-        <h4>Cart: {cart.length}</h4> 
+      <Link to="/cart" className="text-dark">
+      <h4>Cart: {cart.length}</h4> 
+        </Link>
       </Col>
     </Row>
   );

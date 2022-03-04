@@ -28,6 +28,10 @@ const ProductDetail = () => {
     let result = await response.data;
     dispatch(selectedProduct(result));
   };
+  const addToCartHandler = (selected) => {
+    dispatch(addToCart(selected));
+    alert(`${selected.title} added to cart!`)
+  };
   useEffect(() => {
     fetchData();
     return () => {
@@ -59,7 +63,9 @@ const ProductDetail = () => {
           <img alt="Card image cap" src={`${selected.image}`} width="100%" />
           <CardBody>
             <CardText>{selected.description}</CardText>
-            <Button color="primary" onClick={()=> dispatch(addToCart(selected))}>Add to Cart</Button>
+            <Button color="primary" onClick={()=>addToCartHandler(selected)}>
+              Add to Cart
+            </Button>
           </CardBody>
         </Card>
       </Col>
